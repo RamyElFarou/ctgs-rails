@@ -1,0 +1,41 @@
+<div class='container-fluid'>
+  <div class='row'>
+    <div class='col-lg-8 col-lg-offset-2'>
+      <h1 align='center' class ='ctgs'> CONFERENCE TRAVEL GRANT SYSTEM</h1>
+    </div>
+  </div>
+  
+  <div class='row' style="margin-bottom:15px;">
+    <div class='col-md-3 col-md-offset-5'>
+      <%= image_tag "ctgs.png", :size => "128" %>
+    </div>
+  </div>
+  <% if !logged_in? %>
+  <div class="row login">
+    <div class="col-lg-3 col-lg-offset-3">
+      <a href="/login" class="thumbnail">
+        <%= image_tag "people.png" %>
+        <h2 align="center"> University Staff </h2>
+        <h2 align= "center"><span class="label label-primary">Login</span></h2>
+      </a>
+    </div>
+
+    <div class="col-lg-3">
+      <a href="/login" class="thumbnail">
+        <%= image_tag "student.png" %>
+        <h2 align="center">Student</h2>
+        <h2 align= "center"><span class="label label-primary">Login</span></h2>
+      </a>
+    </div>
+    <% end %>
+    
+</div>
+<!--
+<script>
+  $(document).ready(function() {
+    $(".thumbnail").on("mouseover", function(){
+      $(this).hide();
+    });
+  });
+</script>
+-->
