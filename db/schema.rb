@@ -11,21 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128002055) do
+ActiveRecord::Schema.define(version: 20161201213759) do
 
-  create_table "requesters", force: :cascade do |t|
-    t.string   "student_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "application_requests", force: :cascade do |t|
+    t.integer  "grant_application_id"
+    t.string   "status"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "grant_applications", force: :cascade do |t|
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "student_number"
+    t.string   "academic_unit"
+    t.string   "program"
+    t.string   "session_number"
+    t.string   "thesis"
+    t.integer  "course_count"
+    t.string   "type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "login_id"
+    t.string   "password_digest"
     t.integer  "supervisor_id"
   end
 
-  add_index "requesters", ["supervisor_id"], name: "index_requesters_on_supervisor_id"
-
   create_table "supervisors", force: :cascade do |t|
-    t.string   "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "login_id"
+    t.string   "password_digest"
+    t.string   "employee_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
