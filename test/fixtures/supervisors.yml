@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  employee_id: MyString
+  login_id: MyString
+  password_digest: MyString
+  employee_number: MyString
 
 two:
-  employee_id: MyString
+  login_id: MyString
+  password_digest: MyString
+  employee_number: MyString

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_number: MyString
+  academic_unit: MyString
+  program: MyString
+  session_number: MyString
+  thesis: MyString
+  course_count: 1
+  type: 
+
+two:
+  student_number: MyString
+  academic_unit: MyString
+  program: MyString
+  session_number: MyString
+  thesis: MyString
+  course_count: 1
+  type: 
