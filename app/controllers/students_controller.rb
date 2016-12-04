@@ -6,7 +6,7 @@ class StudentsController < ApplicationController
    
    def create
        @student = Student.new(student_params)
-        
+       #@student.supervisor = 
         if @student.save  # only happens if @student passes the validations we set up in our model
             flash[:success] = "Congrats"
             redirect_to student_path(@student)

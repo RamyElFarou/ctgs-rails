@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       supervisor = Supervisor.find_by(login_id: params[:session][:login_id])
       if supervisor  && supervisor.authenticate(params[:session][:password])
         session[:supervisor_id] = supervisor.id # => browsers cookies handle this
-        flash[:success] = "You have successfully logged in as a student"
+        flash[:success] = "You have successfully logged in as a supervisor"
         redirect_to root_path
       end
       
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         
     end
     
- end
+  end
   
   # end the session and move the user to a logged out state
   def destroy 

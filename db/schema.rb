@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201213759) do
+ActiveRecord::Schema.define(version: 20161204022515) do
 
   create_table "application_requests", force: :cascade do |t|
     t.integer  "grant_application_id"
@@ -20,10 +20,40 @@ ActiveRecord::Schema.define(version: 20161201213759) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "grant_applications", force: :cascade do |t|
-    t.integer  "student_id"
+  create_table "conferences", force: :cascade do |t|
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "website"
+    t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "expense_estimates", force: :cascade do |t|
+    t.decimal  "registration"
+    t.decimal  "transportation"
+    t.decimal  "accomodation"
+    t.decimal  "meals"
+    t.decimal  "total"
+    t.integer  "application_request_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.text     "justification"
+  end
+
+  create_table "grant_applications", force: :cascade do |t|
+    t.integer  "student_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "conference_id"
+  end
+
+  create_table "presentations", force: :cascade do |t|
+    t.string   "topic"
+    t.string   "type"
+    t.integer  "application_request_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "students", force: :cascade do |t|

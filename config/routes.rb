@@ -9,6 +9,16 @@ Rails.application.routes.draw do
     resources :supervisors
     resources :grant_applications
     
+    resources :application_requests do
+      resources :presentations
+      resources :expense_estimates
+    end
+    
+    
+  
+    
+    get 'conferences', to: 'conferences#index'
+    
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
@@ -19,7 +29,7 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+     
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -37,10 +47,7 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+     
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
