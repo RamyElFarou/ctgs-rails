@@ -18,13 +18,18 @@
         <h2 align="center"> University Staff </h2>
         <h2 align= "center"><span class="label label-primary">Login</span></h2>
       </a>
-    </div>
+  </div>
 
-    <div class="col-lg-3">
+  <div class="col-lg-3">
       <a href="/login" class="thumbnail">
         <%= image_tag "student.png" %>
         <h2 align="center">Student</h2>
         <h2 align= "center"><span class="label label-primary">Login</span></h2>
       </a>
-    </div>
-    <% end %>
+  </div>
+  
+  <% elsif  %>
+  
+  <% link_to 'View Available Conferences', conferences_path, class: "btn btn-lg btn-success"  %>
+   
+  <% end %>

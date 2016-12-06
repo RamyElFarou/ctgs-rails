@@ -3,6 +3,8 @@ class GrantApplication < ActiveRecord::Base
     belongs_to :conference
     has_one :application_request, dependent: :destroy
     
-    validates :student_id, :conference_id, presence: :true
+    validates :student_id, :conference, presence: :true
+
+    
     
 end

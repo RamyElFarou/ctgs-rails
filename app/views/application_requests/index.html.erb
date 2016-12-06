@@ -1,0 +1,29 @@
+
+    <% @application_requests.each do |application_request| %>
+    
+        <div class='row' style="margin-top: 15px;">
+            <div class='col-xs-8 col-xs-offset-2'>
+                <div class='well well-lg'>
+                    
+                    <div class="application-id">
+                        <h2><%= link_to 'Application - ' + " #{application_request.grant_application.conference.name}", application_request_path(application_request) %>
+                        <span class='label label-primary' style="margin-left:20px;"><%= "#{application_request.status}" %></span>
+                        </h2>
+                    </div>
+                    
+                    <div class="field-meta-details">
+                        <h4><%= "#{application_request.grant_application.student.first_name}" + " #{application_request.grant_application.student.last_name}"  %>
+                            
+                        <% if application_request.status == 'pending' || session[:supervisor_id] %>
+
+                            <%= link_to 'Review Application', application_request_path(application_request),
+                                                    class: "btn btn-md btn-success", style: "float:right;" %>
+                        <% end %>
+                        </h4>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    <% end %>
+

@@ -1,23 +1,151 @@
 
-    <div class = "row">
+   
+   
+   <h2 align ="center"><%= "#{@application_request.grant_application.student.first_name}  #{@application_request.grant_application.student.last_name}" +"'s grant application request to " + "#{@application_request.grant_application.conference.name}" %>
+                                        </h2>
+    
+    <div class = "row" style = "padding-top:20px;">
         <div class = "col-xs-8 col-xs-offset-2">
             <div class= "well well-lg"> <!-- wells are used to create a border around elements -->
               
-                <div class = "">
-                    <%= link_to "Expense Estimate", new_application_request_expense_estimate_path(@application_request) %> 
-                </div>
+                
+                    
+                    <h2>
+                        <% if !@application_request.expense_estimate %>
+                            <%= link_to "Expense Estimate", new_application_request_expense_estimate_path(@application_request) %>
+                            <%= link_to 'Missing', new_application_request_expense_estimate_path(@application_request), class:"btn btn-sm btn-danger"%>
+                        
+                        <% else %>
+                            
+                            <%= link_to "Expense Estimate", edit_application_request_expense_estimate_path(@application_request, @application_request.expense_estimate) %>
+                            <% if @application_request.advance_requested %><span class='label label-primary' style="float:right;">Advance Requested</span><% end %>
+                            
+                                <% if !@application_request.advance_requested %>
+                               <h4><%= form_for(@application_request, url: { action: 'update' }, :html => { roll: "form"}) do |f| %>
+                               
+                                        <% f.label :advance_requested %>
+                                        <%= f.select :advance_requested, [['Request Advance', true],['', false]], autofocus:true %>
+                                        <%= f.submit 'Request Advance', class: 'btn btn-primary btn-xs' %>
+                                <% end %>
+
+                                <% end %>
+                                </h4>
+
+                    </h2>
+                    
+                    <hr>
+                            <%= "Registration cost: " + "#{@application_request.expense_estimate.registration.to_int} | "%>
+                            <%= "Transportation Estimate: " + "#{@application_request.expense_estimate.accomodation.to_int} | " %>
+                            <%= "Accomodation Estimate: " + "#{@application_request.expense_estimate.transportation.to_int} | " %>
+                            <%= "Meals Estimate: " + "#{@application_request.expense_estimate.meals.to_int} | " %>
+                            
+                    <hr>
+                            <%= simple_format(@application_request.expense_estimate.justification) %>
+                    
+                    
+                    <% end %>
+                    
+                
                 
                
                 
-                <% if logged_in? %>
+                <% if @application_request.expense_estimate %>
                     <div class = "field-actions">
-                        <%= link_to 'Edit Expense Estimate', root_path, class: "btn btn-xs btn-primary center" %>
+                        <%= link_to 'Edit Expense Estimate', edit_application_request_expense_estimate_path(@application_request, @application_request.expense_estimate), class: "btn btn-xs btn-primary center", style: "float:right; margin-left:5px;" %>
                         <%= link_to 'Delete ', root_path, #method: :delete,
                                                     data: {confirm: "Are you sure you want to delete the article?"},
-                                                     class: "btn btn-xs btn-danger center" %>
+                                                     class: "btn btn-xs btn-danger center", style: "float:right; " %>
 
                     </div>
                 <% end %>
             </div>
         </div>      
     </div>
+    
+    <div class = "row" style = "padding-top:20px;">
+        <div class = "col-xs-8 col-xs-offset-2">
+            <div class= "well well-lg"> <!-- wells are used to create a border around elements -->
+              
+                
+                    
+                    <h2>
+                        <% if !@application_request.presentation %>
+                            <%= link_to "Presentation", new_application_request_presentation_path(@application_request), :popup => ['Modelo Educacional', 'height=300,width=600'] %>
+                            <%= link_to 'MISSING', new_application_request_presentation_path(@application_request), class:"btn btn-sm btn-danger"%>
+                        <% else %>
+                            <%= link_to "Presentation", edit_application_request_presentation_path(@application_request, @application_request.presentation) %>
+                        
+                        
+                    </h2>
+                    
+                    <hr>
+                            <%= "Presentation Topic: " + "#{@application_request.presentation.topic} | "%>
+                            <%= "Format: " + "#{@application_request.presentation.presentation_format} | " %>
+                
+                
+                       <% end %>
+                
+                <% if @application_request.presentation %>
+                    <div class = "field-actions">
+                        <%= link_to 'Edit Presentation', edit_application_request_presentation_path(@application_request, @application_request.presentation), class: "btn btn-xs btn-primary center", style: "float:right; margin-left:5px;" %>
+                        <%= link_to 'Delete ', root_path, #method: :delete,
+                                                    data: {confirm: "Are you sure you want to delete the article?"},
+                                                     class: "btn btn-xs btn-danger center", style: "float:right; margin-left:5px;"  %>
+
+                    </div>
+                <% end %>
+            </div>
+        </div>      
+    </div>
+    
+    <!-- Supervisor Evaluation -->
+    
+    <% if session[:supervisor_id] %>
+    
+        
+    <div class = 'col-xs-12' style="margin-top:20px;"> 
+          <%= form_for(@application_request, url: { action: 'update' }, :html => {class: "form-horizontal", roll: "form"}) do |f| %>
+          
+          
+          <div class = "form-group">       <!-- form for accomodation cost -->
+              <div class = "control-label col-sm-2">
+                <%= f.label :status %>
+              </div>
+              <div class = "col-sm-8">
+                 
+                <%= f.select :status, ['Rejected', 'Approved', 'Changes Suggested'], class: "form-control", placeholder: "Supervisor decision", autofocus:true %>
+              
+              </div>
+          </div>
+          
+          <div class = "form-group">      <!-- form for cost justification -->
+              <div class = "control-label col-sm-2">
+                  <%= f.label :suggested_changes %>
+              </div>
+            <div class = "col-sm-8">
+             <%= f.text_area :suggested_changes, rows: 10, class: "form-control", placeholder: "Recommend changes to the student", autofocus:true %>
+             </div>
+          </div>
+         
+         
+          <div class = "form-group">     
+            <div class ="col-sm-offset-5 col-sm-10">
+               <%= f.submit 'Update Application Status', class: 'btn btn-primary btn-lg' %>
+               <%= link_to 'Cancel', application_request_path(@application_request), class: "btn btn-lg btn-warning" %>
+            </div>
+          </div>
+          <% end %>
+           
+        </div>
+    <% else %>    
+    <div class = "well col-xs-8 col-xs-offset-2">
+        <h4 class = "center description"><strong>Suggested Changes: </strong></h4>
+          <hr>
+          <%= simple_format(@application_request.suggested_changes) %> 
+    <% end %>
+  
+   
+
+    
+    
+    

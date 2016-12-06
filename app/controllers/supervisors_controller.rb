@@ -12,10 +12,13 @@ class SupervisorsController < ApplicationController
         end
     end
     
+    
     private 
     
     def supervisor_params
        params(:supervsior).permit[:employee_number, :login_id, :password] 
     end
+    
+    
     
 end

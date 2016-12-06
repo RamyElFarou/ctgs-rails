@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  masters_grant_limit: 9.99
+  phd_grant_limit: 9.99
+
+two:
+  category: MyString
+  masters_grant_limit: 9.99
+  phd_grant_limit: 9.99

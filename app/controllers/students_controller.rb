@@ -1,26 +1,20 @@
 class StudentsController < ApplicationController 
+   before_action :require_supervisor
    
    def new 
       @student = Student.new 
    end
    
    def create
-       @student = Student.new(student_params)
-       #@student.supervisor = 
+        @student = Student.new(student_params)
+        @student.supervisor = current_user
         if @student.save  # only happens if @student passes the validations we set up in our model
-            flash[:success] = "Congrats"
-            redirect_to student_path(@student)
+            flash[:success] = "Congratulations the Student was created."
+            redirect_to root_path
         else 
-            flash[:error] = "bruh"
+            render 'new'
         end
-    end
-  
-   def destroy
-       @user = User.find(params[:id])
-       user.destroy
-       flash[:danger] = "Student and all Grant Applications created by student have been deleted"
-       redirect_to users_path
-  end
+   end
  
    
    # we declare helper_methods under private. 
@@ -30,7 +24,7 @@ class StudentsController < ApplicationController
    
    # method for whitelisting parameters
    def student_params
-       params.require(:student).permit(:login_id, :password, :student_number)
+       params.require(:student).permit(:login_id, :password, :student_number, :supervisor_id, :first_name, :last_name)
    end
    
 end

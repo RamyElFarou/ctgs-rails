@@ -1,25 +1,30 @@
+<div class='row' style="margin-bottom:50px;">
+    <div class='col-sm-3 col-xs-offset-5'>
+      <%= image_tag "ctgs.png", :size => "128" %>
+      <%= link_to 'Create Grant Application', new_grant_application_path, class: "btn btn-lg btn-primary", style:"margin-left:-45px; margin-top:25px;" %>
+    </div>
+</div>
+
 <div class='row'>
-    
-    <div class="col-lg-3">
-      <a href="/new_grant_application" class="thumbnail">
-        <%= image_tag "science.png" %>
-        <h2 align="center"> Science Canada Conference </h2>
+  <% @conferences.each do |conf| %>
+    <div class="col-md-4">
+      <a href="/grant_applications/new" class="thumbnail">
+        
+        <% if conf.id == 1 %>
+          <%= image_tag "science.png" %>
+        <% elsif conf.id == 2 %>
+          <%= image_tag "cloud.png" %>
+        <% else %>
+          <%= image_tag "nasa.png" %>
+        <% end %>
+        
+        <h2 align="center"><%= conf.name %>  </h2>
+        <h4 align="center"><%= conf.start_date %></h4>
+        <h4 align="center"><%= conf.end_date %></h4>
+        <h4 align="center"><%= conf.location %></h4>
       </a>
     </div>
-    
-    <div class="col-lg-3">
-      <a href="/welcome" class="thumbnail">
-        <%= image_tag "cloud.png" %>
-        <h2 align="center"> Cloud Computing Conference </h2>
-        <%  %>
-      </a>
-    </div>
-    
-    <div class="col-lg-3">
-      <a href="/welcome" class="thumbnail">
-        <%= image_tag "nasa.png" %>
-        <h2 align="center"> Japan NASA Conference </h2>
-      </a>
-    </div>
+  <% end %>  
+  
     
 </div>

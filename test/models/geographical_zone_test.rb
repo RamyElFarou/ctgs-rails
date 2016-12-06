@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ExpenseEstimatesControllerTest < ActionController::TestCase
+class GeographicalZoneTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

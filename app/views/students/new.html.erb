@@ -1,1 +1,98 @@
-<p>add student page</p>
+<%= render 'shared/errors', obj: @student %>
+<div class ='row' style='margin-top:20px;'>
+     <!-- Spans all 12 columns of the grid -->
+      <%= form_for(@student, :html => {class: "form-horizontal", roll: "form"}) do |f| %>
+      
+        <div class = 'col-md-6'>
+            
+          <div class = "form-group">       
+              <div class = "control-label col-sm-2">
+                <%= f.label :first_name %>
+              </div>
+              <div class = "col-sm-8">
+                 <%= f.text_field :first_name, class: "form-control", placeholder: "Enter first name", autofocus:true %>
+              </div>
+          </div>
+          
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :last_name %>
+              </div>
+              <div class = "col-sm-8">
+                 <%= f.text_field :last_name, class: "form-control", placeholder: "Enter last name", autofocus:true %>
+              </div>
+          </div>
+          
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :email %>
+            </div>
+             <div class = "col-sm-8">
+              <%= f.email_field :email, class: "form-control", placeholder: "Enter email", autofocus:true %>
+             </div>
+          </div>
+          
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :login_id %>
+            </div>
+             <div class = "col-sm-8">
+              <%= f.text_field :login_id, class: "form-control", placeholder: "Student will use this as login id", autofocus:true %>
+             </div>
+          </div>
+    
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :password %>
+            </div>
+             <div class = "col-sm-8">
+              <%= f.text_field :password, class: "form-control", placeholder: "Enter password", autofocus:true %>
+             </div>
+          </div>
+          
+
+          <div class = "form-group">       
+              <div class = "control-label col-sm-2">
+                <%= f.label :student_number %>
+              </div>
+              <div class = "col-sm-8">
+                 <%= f.text_field :student_number, class: "form-control", placeholder: "Enter student number", autofocus:true %>
+              </div>
+          </div>
+          
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :student_type %>
+              </div>
+              <div class = "col-sm-8">
+                 <%= f.text_field :student_type, class: "form-control", placeholder: "Enter PHD/PHD-FT or Masters", autofocus:true %>
+              </div>
+          </div>
+          
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :session_number %>
+              </div>
+              <div class = "col-sm-8">
+                 <%= f.text_field :session_number, class: "form-control", placeholder: "Enter the student's current session number", autofocus:true %>
+              </div>
+          </div>
+          
+          <div class = "form-group">      
+              <div class = "control-label col-sm-2">
+                <%= f.label :program %>
+              </div>
+              <div class = "col-sm-8">
+                 <%= f.text_field :program, class: "form-control", placeholder: "Enter student's program of study", autofocus:true %>
+              </div>
+          </div>
+            
+        </div>
+        
+         <div class = "form-group">    
+            <div class ="col-sm-offset-5 col-sm-10">
+               <%= f.submit(@student.new_record? ? "Add Student" : "Update account", class: 'btn btn-primary btn-lg') %>
+            </div>
+          </div>
+          
+      <% end %>

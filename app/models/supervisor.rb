@@ -2,7 +2,7 @@ class Supervisor < ActiveRecord::Base
     
     # associations
     has_many :students
-    has_many :grant_applications, through: :students
+    
     
     # validations
     has_secure_password

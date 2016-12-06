@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     end
     
     
-  
-    
     get 'conferences', to: 'conferences#index'
     
     get 'login', to: 'sessions#new'

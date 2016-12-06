@@ -5,6 +5,7 @@ class Student < ActiveRecord::Base
     has_many :application_requests, through: :grant_applications
     belongs_to :supervisor
     
+    
     # before_save { self.email = email.downcase } #before user hits db, convert email value to lowercase
 
     # validations

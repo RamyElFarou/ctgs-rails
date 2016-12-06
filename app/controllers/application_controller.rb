@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   # => fetches the current student from the session using the session hash
     def current_user
+      
       @current_student = Student.find(session[:student_id]) if session[:student_id]
       @current_supervisor = Supervisor.find(session[:supervisor_id]) if session[:supervisor_id]
       @current_user = @current_student || @current_supervisor
@@ -26,7 +27,21 @@ class ApplicationController < ActionController::Base
         redirect_to root_path
       end
     end
+    
+    def require_student
+      if session[:student_id] == nil
+        flash[:danger] = "Only logged in students can peform that action"
+        redirect_to root_path
+      end
+    end
+    
+    def require_supervisor
+      if session[:supervisor_id] == nil
+        flash[:danger] = "Only logged in supervisors can peform that action"
+        redirect_to root_path
+      end
+    end
+    
 
 end
   
-
